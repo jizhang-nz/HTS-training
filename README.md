@@ -16,8 +16,8 @@ SPAdes – St. Petersburg genome assembler [*de novo* genome assembly with de Br
 ## Genome assembly and *de Bruijn* graphs
 * Each reads were disseted into *k*-mers. For example, for the sequence `ATGCAT`, when *k*=3, it can be dissected into four *3*-mers: <br>`ATG TGC GCA CAT`
 * Each *k*-mers were splitted into two parts: prefix and suffix. Both parts have the length of *k-1*. For example, for *3*-mer `ATG`, the prefix is **AT** and the suffix is **TG**;
-* The *k*-mers that shared a common prefix and suffix were connected. For example, the sufix of `ATG` and the prefix of `TGC` are identical, therefore they can be connected and form a new sequence `ATGC`
-
+* The *k*-mers that shared a common prefix and suffix can be connected. For example, the sufix of `ATG` and the prefix of `TGC` are identical, therefore they can be connected and form a new sequence `ATGC`
+* In this way, more *k*-mers can be connected and formed longer new sequence, which is called contig sequence.
 ---
 
 ## What’s Spades good for?
