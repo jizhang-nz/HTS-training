@@ -1,15 +1,23 @@
 # Overview
 
-SPAdes – St. Petersburg genome assembler [de novo genome assembly with de Bruijn graphs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)
+SPAdes – St. Petersburg genome assembler [*de novo* genome assembly with de Bruijn graphs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)
 
 ---
 
 ## Contents
-1. [Genome assembliy and de Bruijn graphs]
+1. [Algorithm](#algorithm)
 1. [What’s Spades good for?](#introduction)
 1. [Before using Spades](#Before-using-Spades)
 1. [Using Spades](#Using-Spades)
 1. [After using Spades](#After-using-Spades)
+
+---
+
+## Genome assembly and *de Bruijn* graphs
+* Each reads were disseted into *k*-mers. For example, for the sequence `ATGCAT`, when *k*=3, it can be dissected into four *3*-mers: 
+ <br>`ATG TGC GCA CAT`
+* Each *k*-mers were splitted into prefix and suffix. For example for *3*-mer `ATG`, the prefix is **AT** and the suffix is **TG**;
+* The *k*-mers that shared a common prefix and suffix were connected. For example, the sufix of A**TG** and the prefix of **TG**C are identical, therefore they can be connected and form an assemblie A**TG**C
 
 ---
 
