@@ -1,6 +1,6 @@
 # Overview
 
-SPAdes – St. Petersburg genome assembler [*de novo* genome assembly with de Bruijn graphs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)
+[SPAdes](https://cab.spbu.ru/software/spades/) – St. Petersburg genome assembler [*de novo* genome assembly with de Bruijn graphs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)
 
 ---
 
@@ -14,34 +14,37 @@ SPAdes – St. Petersburg genome assembler [*de novo* genome assembly with de Br
 ---
 
 ## Genome assembly and *de Bruijn* graphs
-* Each reads were disseted into *k*-mers. For example, for the sequence `ATGCAT`, when *k*=3, it can be dissected into four *3*-mers: <br>`ATG TGC GCA CAT`
-* Each *k*-mers were splitted into two parts: prefix and suffix. Both parts have the length of *k-1*. For example, for *3*-mer `ATG`, the prefix is **AT** and the suffix is **TG**;
-* The *k*-mers that shared a common prefix and suffix can be connected. For example, the sufix of `ATG` and the prefix of `TGC` are identical, therefore they can be connected and form a new sequence `ATGC`
-* In this way, more *k*-mers can be connected and formed longer new sequence, which is called contig sequence.
+* Each reads were disseted into *k*-mers of the length *k*. For example, for the sequence `ATGCAT`, when *k*=3, the string can be dissected into four substrings of *3*-mers: <br>`ATG` <br>`TGC` <br>`GCA` <br>`CAT`
+* Each *k*-mers were further splitted into two substrings: prefix and suffix. Both substrings have the length of *k-1*. For example, for *3*-mer `ATG`, the prefix is `AT` and the suffix is `TG`;
+* The *k*-mers that shared a common prefix and suffix can be connected. For example, the sufix of `ATG` and the prefix of `TGC` are identical, therefore they can be connected and formed a new sequence `ATGC`
+* In this way, more overlapping *k*-mers can be connected and formed longer new sequence, which is called a **sequence contig**.
+ <br> <br>![usage-0](https://github.com/jizhang-nz/fast-GeP/blob/master/Examples/Fig.1.png)
+
 ---
 
 ## What’s Spades good for?
-* Short-reads de novo assemblies
-* Short-reads + Long-read hybrid de novo assemblies
-* Mainly for smaller size genomes (bacterial, viral, fungal, mitochondrial genomes etc.)
+* Short-reads *de novo* assembly.
+* Short-reads + Long-read hybrid *de novo* assembly.
+* Smaller size genomes (bacterial, viral, fungal, mitochondrial genomes etc.)
 
 ---
 
 ## Before using Spades
-* Know your sequencing read data: FastQC
-* What is the read length? 
-* Do they contain adaptor sequences?
-* Trimming of the sequencing read data: Trimmomatic, fastp
-* Adaptors
-* low quality sequences
-* very short reads 
+* Know your sequencing read data: [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+	* What is the read length? 
+	* Do they contain adaptor sequences?
+* Trimming of the sequencing read data such as [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) and [fastp](https://github.com/OpenGene/fastp).
+	* Adaptors sequences
+	* Low quality sequences
+	* Very short reads
+
 * Finding out available version of Spades in the server: 
 
 ```bash
 $ module avail spades
 ```
 
-* Loading in the flavour you’d like to use: 
+* Loading in the version you’d like to use: 
 
 ```bash
 $ module load  SPAdes/3.15.2-gimkl-2020a
@@ -68,7 +71,7 @@ $ quast.py *.fasta -o quast_output
 ```
 ---
 
-* Visualization de novo assembly graphs to explore connections between the contigs:
+* Visualization *de novo* assembly graphs to explore connections between the contigs:
 
 ```bash
 # Loading dependency for Bandage
