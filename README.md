@@ -19,8 +19,10 @@
 * The *k*-mers that shared a common **prefix** and **suffix** can be connected. For example, the **sufix** of `ATG` and the **prefix** of `TGC` are identical, therefore they can be connected and formed a new sequence `ATGC`
 * In this way, more overlapping *k*-mers can be connected and forming a longer new sequence.
 * Using the *k*-mers as vertices (AKA nodes or points), the connected *k*-mers can form a graph (*de Bruijn* graph), and conflicts and 'bulges' in multiple connections can be mathematically resolved to form a optimum new sequence, which is called a **sequence contig**.
- <br> <br>![usage-0](https://github.com/jizhang-nz/HTS-training/blob/main/Fig.1.png)
-
+ <br> <br> <br> <br>![usage-0](https://github.com/jizhang-nz/HTS-training/blob/main/Fig.1.png)
+ 
+`[Fig. 1.](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/figure/f2/?report=objectonly) Standard and multisized de Bruijn graph. A circular Genome CATCAGATAGGA is covered by a set Reads consisting of nine 4-mers, {ACAT, CATC, ATCA, TCAG, CAGA, AGAT, GATA, TAGG, GGAC}. Three out of 12 possible 4-mers from Genome are missing from Reads (namely {ATAG,AGGA,GACA}), but all 3-mers from Genome are present in Reads. (A) The outside circle shows a separate black edge for each 3-mer from Reads. Dotted red lines indicate vertices that will be glued. The inner circle shows the result of applying some of the glues. (B) The graph DB(Reads, 3) resulting from all the glues is tangled. The three h-paths of length 2 in this graph (shown in blue) correspond to h-reads ATAG, AGGA, and GACA. Thus Reads3,4 contains all 4-mers from Genome. (C) The outside circle shows a separate edge for each of the nine 4-mer reads. The next inner circle shows the graph DB(Reads, 4), and the innermost circle represents the Genome. The graph DB(Reads, 4) is fragmented into 3 connected components. (D) The multisized de Bruijn graph DB(Reads, 3, 4).`
+ <br> <br>
 ---
 
 ## What’s Spades good for?
