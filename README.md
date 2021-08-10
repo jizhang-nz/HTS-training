@@ -5,19 +5,20 @@
 ---
 
 ## Contents
-1. [Genome assembly and *de Bruijn* graphs](#algorithm)
+1. [Genome assembly and *de Bruijn* graphs.](#algorithm)
 1. [What’s Spades good for?](#introduction)
-1. [Before using Spades](#Before-using-Spades)
-1. [Using Spades](#Using-Spades)
-1. [After using Spades](#After-using-Spades)
+1. [Before using Spades.](#Before-using-Spades)
+1. [Using Spades.](#Using-Spades)
+1. [After using Spades.](#After-using-Spades)
 
 ---
 
 ## Genome assembly and *de Bruijn* graphs
 * Each reads were disseted into *k*-mers of the length *k*. For example, for the sequence `ATGCAT`, when *k*=3, the string can be dissected into four substrings of *3*-mers: <br>`ATG` <br>`TGC` <br>`GCA` <br>`CAT`
-* Each *k*-mers were further splitted into two substrings: prefix and suffix. Both substrings have the length of *k-1*. For example, for *3*-mer `ATG`, the prefix is `AT` and the suffix is `TG`;
-* The *k*-mers that shared a common prefix and suffix can be connected. For example, the sufix of `ATG` and the prefix of `TGC` are identical, therefore they can be connected and formed a new sequence `ATGC`
-* In this way, more overlapping *k*-mers can be connected and formed longer new sequence, which is called a **sequence contig**.
+* Each *k*-mers were further splitted into two substrings: **prefix** and **suffix**. Both substrings have the length of *k-1*. For example, for *3*-mer `ATG`, the **prefix** is `AT` and the **suffix** is `TG`;
+* The *k*-mers that shared a common **prefix** and **suffix** can be connected. For example, the **sufix** of `ATG` and the **prefix** of `TGC` are identical, therefore they can be connected and formed a new sequence `ATGC`
+* In this way, more overlapping *k*-mers can be connected and forming a longer new sequence.
+* Using the *k*-mers as vertices, the connected *k*-mers can be represented in a graph (*de Bruijn* graph), and multiple connections can be mathematically resolved to form a most optimum new sequence, which is called a **sequence contig**.
  <br> <br>![usage-0](https://github.com/jizhang-nz/fast-GeP/blob/master/Examples/Fig.1.png)
 
 ---
@@ -34,9 +35,9 @@
 	* What is the read length? 
 	* Do they contain adaptor sequences?
 * Trimming of the sequencing read data such as [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) and [fastp](https://github.com/OpenGene/fastp).
-	* Adaptors sequences
-	* Low quality sequences
-	* Very short reads
+	* Adaptors sequences.
+	* Low quality sequences.
+	* Very short reads.
 
 * Finding out available version of Spades in the server: 
 
