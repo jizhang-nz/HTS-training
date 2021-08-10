@@ -18,8 +18,8 @@
 * Each *k*-mers were further splitted into two substrings: **prefix** and **suffix**. Both substrings have the length of *k-1*. For example, for *3*-mer `ATG`, the **prefix** is `AT` and the **suffix** is `TG`;
 * The *k*-mers that shared a common **prefix** and **suffix** can be connected. For example, the **sufix** of `ATG` and the **prefix** of `TGC` are identical, therefore they can be connected and formed a new sequence `ATGC`
 * In this way, more overlapping *k*-mers can be connected and forming a longer new sequence.
-* Using the *k*-mers as vertices, the connected *k*-mers can be represented in a graph (*de Bruijn* graph), and multiple connections can be mathematically resolved to form a most optimum new sequence, which is called a **sequence contig**.
- <br> <br>![usage-0](https://github.com/jizhang-nz/fast-GeP/blob/master/Examples/Fig.1.png)
+* Using the *k*-mers as vertices (AKA nodes or points), the connected *k*-mers can form a graph (*de Bruijn* graph), and multiple connections can be mathematically resolved to form a most optimum new sequence, which is called a **sequence contig**.
+ <br> <br>![usage-0](https://github.com/jizhang-nz/HTS-training/blob/main/Fig.1.jpg)
 
 ---
 
