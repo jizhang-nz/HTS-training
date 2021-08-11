@@ -135,9 +135,11 @@ $ module load Qt5/5.13.2-GCCcore-9.2.0
 $ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537/
 ```
 
-* Read [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file and drew image with Bandage:
+* Read the [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file and drew image with Bandage:
 ```bash
+# go to the directory
 $ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+# draw graph
 $ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
 ```
 
