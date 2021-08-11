@@ -112,7 +112,9 @@ spades.py -1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T1
 ```
 
 * Save and run the SLURM script:
+```bash
 `sbatch run_spades.sh &`
+```
 
 ## After using SPAdes
 * Assembly quality assessment with QUAST:
