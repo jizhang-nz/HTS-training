@@ -137,7 +137,7 @@ $ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/pro
 
 * Read the [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file and drew image with Bandage:
 ```bash
-# go to the directory
+# go to the SPAdes output directory
 $ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 # draw graph
 $ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
