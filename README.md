@@ -64,7 +64,7 @@ $ module load SPAdes/3.15.2-gimkl-2020a
 ---
 
 ## Using SPAdes
-The test data is part of the 2×150 bp Illumina HiSeq sequencing reads from the whole-genome sequencing project of (supposingly) a brown marmorated stink bug (BMSB). The mitochondrial genome reads were extracted from the whole-data, and low quality data and adaptor sequences were trimmed.
+The test data is part of the 2×150 bp Illumina HiSeq sequencing reads from a whole-genome sequencing project of (supposingly) a brown marmorated stink bug (BMSB). The mitochondrial genome reads were extracted from the whole-data. Low quality reads and adaptor sequences were trimmed.
 
 ```bash
 # make a working directory for SPAdes
