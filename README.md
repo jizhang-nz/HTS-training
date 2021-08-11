@@ -38,7 +38,7 @@ From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC334251
 ---
 
 ## Before using SPAdes
-* Know your sequencing read data: [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* Know your sequencing read data using[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 	* What is the sequencing platform?
 	* What is the read length? 
 	* Do they contain adaptor sequences?
@@ -55,7 +55,7 @@ From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC334251
 $ module avail spades
 ```
 
-* Loading in the version you’d like to use: 
+* Loading in the version you’d like to use. For example: 
 
 ```bash
 $ module load  SPAdes/3.15.2-gimkl-2020a
@@ -68,16 +68,17 @@ The test data is a set of 2×150 bp Illumina HiSeq sequencing reads (supposingly
 
 ```bash
 # make a working directory
-$ mkdir /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ mkdir /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 
 # copy the sequencing reads to the spades folder
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_unpaired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/*.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 
 # or
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/*.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_unpaired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R2_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R2_unpaired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+
 ```
  
 * Having a look at the available options and default values:
@@ -107,7 +108,7 @@ module purge
 module load  SPAdes/3.15.2-gimkl-2020a
 
 #execute the required command
-spades.py -1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R1_paired.fq -2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R2_paired.fq --s1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R1_unpaired.fq --s2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R2_unpaired.fq -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537 -k 21, 33, 55, 77 --careful --thread 2 --memory 4 
+spades.py -1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R1_paired.fq -2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R2_paired.fq --s1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R1_unpaired.fq --s2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R2_unpaired.fq -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537 -k 21, 33, 55, 77 --careful --thread 2 --memory 4 
 ```
 
 * Save and run the SLURM script:
@@ -120,7 +121,7 @@ spades.py -1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18
 $ module load QUAST/5.0.2-gimkl-2018b
 
 # running QUAST analysis for the assembly
-$ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/contigs.fasta -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/quast_output/
+$ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/contigs.fasta -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/quast_output/
 ```
 ---
 
@@ -131,12 +132,12 @@ $ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/conti
 $ module load Qt5/5.13.2-GCCcore-9.2.0
 
 # copy the program Bandage to your folder
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537/
 ```
 
 * Read [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file and drew image with Bandage:
 ```bash
-$ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 $ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
 ```
 
