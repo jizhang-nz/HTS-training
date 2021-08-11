@@ -1,6 +1,6 @@
 # Overview
 
-[SPAdes](https://cab.spbu.ru/software/spades/) – St. Petersburg genome assembler [*de novo* genome assembly with de Bruijn graphs](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)
+[SPAdes](https://cab.spbu.ru/software/spades/) – St. Petersburg genome assembler *de novo* genome assembly with de Bruijn graphs.
 
 ---
 
@@ -38,7 +38,7 @@ From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC334251
 ---
 
 ## Before using SPAdes
-* Know your sequencing read data using[FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* Know your sequencing read data using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 	* What is the sequencing platform?
 	* What is the read length? 
 	* Do they contain adaptor sequences?
@@ -64,13 +64,13 @@ $ module load  SPAdes/3.15.2-gimkl-2020a
 ---
 
 ## Using SPAdes
-The test data is a set of 2×150 bp Illumina HiSeq sequencing reads (supposingly) from a brown marmorated stink bug (BMSB). The sequencing reads have been quality trimmed to Q >= 30 and free from adaptor sequences.
+The test data is part of the 2×150 bp Illumina HiSeq sequencing reads from the whole-genome sequencing project of (supposingly) a brown marmorated stink bug (BMSB). The mitochondrial genome reads were extracted, and the reads were trimmed to Q >= 30 and free from adaptor sequences.
 
 ```bash
-# make a working directory
+# make a working directory for SPAdes
 $ mkdir /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 
-# copy the sequencing reads to the spades folder
+# copy the sequencing reads to the SPAdes folder
 $ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/*.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 
 # or
