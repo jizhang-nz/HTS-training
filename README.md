@@ -14,7 +14,7 @@
 ---
 
 ## Genome assembly and *de Bruijn* graphs
-* Each reads were disseted into *k*-mers of the length *k*. For example, for the sequence `ATGCAT`, when *k*=3, the string can be dissected into four overlapping substrings of *3*-mers: 
+* Each read sequences can be disseted into *k*-mers of the length *k*. For example, for the sequence `ATGCAT`, when *k*=3, the string can be dissected into four overlapping substrings of *3*-mers: 
 <br>`ATG` 
 <br>`TGC` 
 <br>`GCA` 
@@ -25,7 +25,8 @@
 * Using the *k*-mers as vertices (AKA nodes or points), the connected *k*-mers can form multiple graphs (*de Bruijn* graphs), and conflicts and bulge/tip/chimeric read in multiple connections can be removed to form a simplied *de Bruijn* graph.
  <br> <br> <br> <br>
 ![usage-0](https://github.com/jizhang-nz/HTS-training/blob/main/Fig.1.png) <br> <br>
-**Fig. 1.** Standard and multisized *de Bruijn graph*. A circular Genome CATCAGATAGGA is covered by a set Reads consisting of nine 4-mers, {ACAT, CATC, ATCA, TCAG, CAGA, AGAT, GATA, TAGG, GGAC}. Three out of 12 possible 4-mers from Genome are missing from Reads (namely {ATAG,AGGA,GACA}), but all 3-mers from Genome are present in Reads. (A) The outside circle shows a separate black edge for each 3-mer from Reads. Dotted red lines indicate vertices that will be glued. The inner circle shows the result of applying some of the glues. (B) The graph DB(Reads, 3) resulting from all the glues is tangled. The three h-paths of length 2 in this graph (shown in blue) correspond to h-reads ATAG, AGGA, and GACA. Thus Reads3,4 contains all 4-mers from Genome. (C) The outside circle shows a separate edge for each of the nine 4-mer reads. The next inner circle shows the graph DB(Reads, 4), and the innermost circle represents the Genome. The graph DB(Reads, 4) is fragmented into 3 connected components. (D) The multisized *de Bruijn* graph DB(Reads, 3, 4). (From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/)).
+**Fig. 1.** Standard and multisized *de Bruijn graph*. A circular Genome CATCAGATAGGA is covered by a set Reads consisting of nine 4-mers, {ACAT, CATC, ATCA, TCAG, CAGA, AGAT, GATA, TAGG, GGAC}. Three out of 12 possible 4-mers from Genome are missing from Reads (namely {ATAG,AGGA,GACA}), but all 3-mers from Genome are present in Reads. (A) The outside circle shows a separate black edge for each 3-mer from Reads. Dotted red lines indicate vertices that will be glued. The inner circle shows the result of applying some of the glues. (B) The graph DB(Reads, 3) resulting from all the glues is tangled. The three h-paths of length 2 in this graph (shown in blue) correspond to h-reads ATAG, AGGA, and GACA. Thus Reads3,4 contains all 4-mers from Genome. (C) The outside circle shows a separate edge for each of the nine 4-mer reads. The next inner circle shows the graph DB(Reads, 4), and the innermost circle represents the Genome. The graph DB(Reads, 4) is fragmented into 3 connected components. (D) The multisized *de Bruijn* graph DB(Reads, 3, 4). <br> <br>
+From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3342519/).
  <br> <br>
 ---
 
@@ -38,12 +39,15 @@
 
 ## Before using SPAdes
 * Know your sequencing read data: [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+	* What is the sequencing platform?
 	* What is the read length? 
 	* Do they contain adaptor sequences?
+	* etc.
 * Trimming of the sequencing read data such as [Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) and [fastp](https://github.com/OpenGene/fastp).
 	* Adaptors sequences.
 	* Low quality sequences.
 	* Very short reads.
+	* etc.
 
 * Finding out available version of SPAdes in the server: 
 
@@ -60,8 +64,23 @@ $ module load  SPAdes/3.15.2-gimkl-2020a
 ---
 
 ## Using SPAdes
-* Finding out available options and default values:
+The test data is a set of 2×150 bp Illumina HiSeq sequencing reads (supposingly) from a brown marmorated stink bug (BMSB). The sequencing reads have been quality trimmed to Q30 and free of adaptor sequence.
 
+```bash
+# make a working directory
+$ mkdir /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+
+# copy the sequencing reads to the spades folder
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_unpaired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+
+# or
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/*.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+```
+ 
+* Having a look at the available options and default values:
 ```bash
 $ spades.py -h
 ```
@@ -88,7 +107,7 @@ module purge
 module load  SPAdes/3.15.2-gimkl-2020a
 
 #execute the required command
-spades.py -1 R1.fastq -2 R2.fastq -k 21, 33, 55, 77 --careful --thread 2 --memory 4
+spades.py -1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R1_paired.fq -2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R2_paired.fq --s1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R1_unpaired.fq --s2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537.R2_unpaired.fq -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537 -k 21, 33, 55, 77 --careful --thread 2 --memory 4 
 ```
 
 * Save and run the SLURM script:
@@ -96,13 +115,12 @@ spades.py -1 R1.fastq -2 R2.fastq -k 21, 33, 55, 77 --careful --thread 2 --memor
 
 ## After using SPAdes
 * Assembly quality assessment with QUAST:
-
 ```bash
 # loading the module QUAST
-$ Module load QUAST/5.0.2-gimkl-2018b
+$ module load QUAST/5.0.2-gimkl-2018b
 
 # running QUAST analysis for the assembly
-$ quast.py *.fasta -o quast_output
+$ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/contigs.fasta -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/quast_output/
 ```
 ---
 
@@ -112,12 +130,15 @@ $ quast.py *.fasta -o quast_output
 # Loading dependency for Bandage
 $ module load Qt5/5.13.2-GCCcore-9.2.0
 
-# Copy the program Bandage to the folder storing the FASTG files:
-$ cp /module_4/Bandage /folder
-
-# Read [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file and drew image with Bandage:
-$ ./Bandage image *.fastg *.svg
-
+# copy the program Bandage to your folder
+$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/T18-02537/
 ```
-Download and inspect the output image file in WINDOWS using browser like `Microsoft Edage`.
-* Tip: press the Ctrl and roll the mouse wheel to zoom the image.
+
+* Read [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file and drew image with Bandage:
+```bash
+$ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/yourname/spades/
+$ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
+```
+
+* Download and inspect the output image file in WINDOWS using browser like `Microsoft Edage`.
+	* Tip: press the Ctrl and roll the mouse wheel to zoom the image.
