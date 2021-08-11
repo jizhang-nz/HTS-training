@@ -38,7 +38,7 @@ From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC334251
 ---
 
 ## Before using SPAdes
-* Know your sequencing read data using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+* Know your sequencing read data using [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/).
 	* What is the sequencing platform?
 	* What is the read length? 
 	* Do they contain adaptor sequences?
@@ -58,13 +58,13 @@ $ module avail spades
 * Loading in the version you’d like to use. For example: 
 
 ```bash
-$ module load  SPAdes/3.15.2-gimkl-2020a
+$ module load SPAdes/3.15.2-gimkl-2020a
 ```
 
 ---
 
 ## Using SPAdes
-The test data is part of the 2×150 bp Illumina HiSeq sequencing reads from the whole-genome sequencing project of (supposingly) a brown marmorated stink bug (BMSB). The mitochondrial genome reads were extracted, and the reads were trimmed to Q >= 30 and free from adaptor sequences.
+The test data is part of the 2×150 bp Illumina HiSeq sequencing reads from the whole-genome sequencing project of (supposingly) a brown marmorated stink bug (BMSB). The mitochondrial genome reads were extracted from the whole-data, and low quality data and adaptor sequences were trimmed.
 
 ```bash
 # make a working directory for SPAdes
