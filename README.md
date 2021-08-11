@@ -1,6 +1,6 @@
 # Overview
 
-[SPAdes](https://cab.spbu.ru/software/spades/) – St. Petersburg genome assembler *de novo* genome assembly with *de Bruijn* graphs.
+[SPAdes](https://cab.spbu.ru/software/spades/) (St. Petersburg genome assembler) - *de novo* genome assembly with *de Bruijn* graphs.
 
 ---
 
