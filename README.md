@@ -117,7 +117,7 @@ sbatch run_spades.sh &
 ```
 
 ## After using SPAdes
-* Assembly quality assessment with QUAST:
+* Assembly quality assessment with [QUAST](http://bioinf.spbau.ru/quast):
 ```bash
 # loading the module QUAST
 $ module load QUAST/5.0.2-gimkl-2018b
@@ -127,13 +127,13 @@ $ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/cont
 ```
 ---
 
-* Visualization *de novo* assembly graphs to explore connections between the contigs:
+* Exploring the connections between the contig sequences with [Bandage](https://rrwick.github.io/Bandage/):
 
 ```bash
 # Loading dependency for Bandage
 $ module load Qt5/5.13.2-GCCcore-9.2.0
 
-# copy the program Bandage to your folder
+# copy the program `Bandage` into the SPAdes output directory `T18-02537`
 $ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537/
 ```
 
