@@ -146,4 +146,4 @@ $ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
 ```
 
 * Download and inspect the output image file in WINDOWS using browser like `Microsoft Edage`.
-	* Tip: press the Ctrl and roll the mouse wheel to zoom the image.
+	* Tip: press the `ctrl` and roll the mouse wheel to zoom the image.
