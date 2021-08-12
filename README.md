@@ -137,7 +137,7 @@ $ module load Qt5/5.13.2-GCCcore-9.2.0
 $ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537/
 ```
 
-* Read the [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file from the SPAdes output directory `T18-02537` and draw an assembly graph with Bandage:
+* Read the [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file from the SPAdes output directory `T18-02537` and draw an assembly graph with [Bandage](https://rrwick.github.io/Bandage/):
 ```bash
 # go to the SPAdes output directory
 $ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
