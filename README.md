@@ -1,6 +1,6 @@
 # Overview
 
-[SPAdes](https://cab.spbu.ru/software/spades/) (St. Petersburg genome assembler) - *de novo* genome assembly with *de Bruijn* graphs.
+[SPAdes](https://cab.spbu.ru/software/spades/) (St. Petersburg genome assembler) - *de novo* genome assembly of short sequence reads with *de Bruijn* graphs.
 
 ---
 
@@ -31,7 +31,7 @@ From [Bankevich et. al 2012](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC334251
 ---
 
 ## What’s SPAdes good for?
-* Short-reads *de novo* assembly.
+* Short sequence reads (Illumina or IonTorrent) *de novo* assembly.
 * Short-reads + Long-read hybrid *de novo* assembly.
 * Smaller size genomes (< 100 Mb, such as bacterial, viral, fungal, mitochondrial genomes etc.)
 
@@ -145,5 +145,5 @@ $ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
 $ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
 ```
 
-* Download and inspect the output image file in WINDOWS using browser like `Microsoft Edage`.
-	* Tip: press the `ctrl` and roll the mouse wheel to zoom the image.
+* Download and inspect the output image file `T18-02537_assembly_graph.svg` in WINDOWS using browser like `Microsoft Edage`.
+	* Tip: After openning the image, one could press the `ctrl` key and roll the mouse wheel to zoom the image.
