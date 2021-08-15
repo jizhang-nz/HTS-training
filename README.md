@@ -64,20 +64,21 @@ $ module load SPAdes/3.15.2-gimkl-2020a
 ---
 
 ## Using SPAdes
-The test data is part of the 2×150 bp Illumina HiSeq sequencing reads from a whole-genome sequencing project of (supposingly) a brown marmorated stink bug (BMSB). The mitochondrial genome reads were extracted from the whole-data. Low quality reads and adaptor sequences were trimmed.
+* The test data is a set of the 2×150 bp Illumina HiSeq sequencing reads that extracted from a whole-genome sequencing project of an insect. Morphological identification indicated that the specimen was a brown marmorated stink bug (BMSB). The result of reference mapping was consistent with morphological identification. Let find out what *de novo* genome assembly would tell us.
+* To save time, low quality reads (Q < 30) and adaptor sequences were trimmed from the original dataset.
 
 ```bash
 # make a working directory for SPAdes
-$ mkdir /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ mkdir /nesi/project/nesi03181/phel/your_name/spades/
 
 # copy the sequencing reads to your SPAdes working directory
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/*.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ cp /nesi/project/nesi03181/phel/module_3/spades/*.fq /nesi/project/nesi03181/phel/your_name/spades/
 
 # or
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R1_unpaired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R2_paired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/T18-02537.R2_unpaired.fq /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ cp /nesi/project/nesi03181/phel/module_3/spades/T18-02537.R1_paired.fq /nesi/project/nesi03181/phel/your_name/spades/
+$ cp /nesi/project/nesi03181/phel/module_3/spades/T18-02537.R1_unpaired.fq /nesi/project/nesi03181/phel/your_name/spades/
+$ cp /nesi/project/nesi03181/phel/module_3/spades/T18-02537.R2_paired.fq /nesi/project/nesi03181/phel/your_name/spades/
+$ cp /nesi/project/nesi03181/phel/module_3/spades/T18-02537.R2_unpaired.fq /nesi/project/nesi03181/phel/your_name/spades/
 
 ```
  
@@ -95,7 +96,7 @@ $ spades.py -h
 #!/bin/bash -e
 
 #SBATCH --account       nesi03181               #Project_Code/Account_Code for tracking
-#SBATCH --job-name      SPAdes              	#An indentifier for the user
+#SBATCH --job-name      SPAdes                  #An indentifier for the user
 #SBATCH --time          00:10:00                #Walltime/Runtime assigned by the user : dd-hh:mm:ss
 #SBATCH --cpus-per-task 2                       #Number of CPUS requested per task
 #SBATCH --mem           4G                      #Amount of memory (TOTAL)
@@ -108,7 +109,7 @@ module purge
 module load  SPAdes/3.15.2-gimkl-2020a
 
 #execute the required command
-spades.py -1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R1_paired.fq -2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R2_paired.fq --s1 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R1_unpaired.fq --s2 /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537.R2_unpaired.fq -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537 -k 21, 33, 55, 77 --careful --thread 2 --memory 4 
+spades.py -1 /nesi/project/nesi03181/phel/your_name/spades/T18-02537.R1_paired.fq -2 /nesi/project/nesi03181/phel/your_name/spades/T18-02537.R2_paired.fq --s1 /nesi/project/nesi03181/phel/your_name/spades/T18-02537.R1_unpaired.fq --s2 /nesi/project/nesi03181/phel/your_name/spades/T18-02537.R2_unpaired.fq -o /nesi/project/nesi03181/phel/your_name/spades/T18-02537 -k 21, 33, 55, 77 --careful --thread 2 --memory 4 
 ```
 
 * Save and run the SLURM script:
@@ -123,7 +124,7 @@ sbatch run_spades.sh &
 $ module load QUAST/5.0.2-gimkl-2018b
 
 # running QUAST analysis for the assembly
-$ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/contigs.fasta -o /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/quast_output/
+$ quast.py /nesi/project/nesi03181/phel/your_name/spades/contigs.fasta -o /nesi/project/nesi03181/phel/your_name/spades/quast_output/
 ```
 ---
 
@@ -134,16 +135,17 @@ $ quast.py /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/cont
 $ module load Qt5/5.13.2-GCCcore-9.2.0
 
 # copy the program `Bandage` into the SPAdes output directory `T18-02537`
-$ cp /nesi/project/comm00008/PHEL_HTS_TRAINING/module_3/spades/Bandage /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/T18-02537/
+$ cp /nesi/project/nesi03181/phel/module_3/spades/Bandage /nesi/project/nesi03181/phel/your_name/spades/T18-02537/
 ```
 
 * Read the [FASTG](http://fastg.sourceforge.net/FASTG_Spec_v1.00.pdf) file from the SPAdes output directory `T18-02537` and draw an assembly graph with [Bandage](https://rrwick.github.io/Bandage/):
 ```bash
 # go to the SPAdes output directory
-$ cd /nesi/project/comm00008/PHEL_HTS_TRAINING/USERS/your_name/spades/
+$ cd /nesi/project/nesi03181/phel/your_name/spades/
 # draw graph
 $ ./Bandage image assembly_graph.fastg T18-02537_assembly_graph.svg
 ```
 
 * Download and inspect the output image file `T18-02537_assembly_graph.svg` in WINDOWS using browser like `Microsoft Edage`.
 	* Tip: After openning the image, one could press the `ctrl` key and roll the mouse wheel to zoom the image.
+* Download the file `contigs.fasta` and search for the most similar sequences in GenBank with [BLASTN](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&BLAST_SPEC=GeoBlast&PAGE_TYPE=BlastSearch).
